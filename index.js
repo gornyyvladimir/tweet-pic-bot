@@ -18,8 +18,8 @@ const bot = new Telegraf(token);
 expressApp.use(bot.webhookCallback(`/bot${token}`));
 bot.telegram
   .setWebhook(`${url}/bot${token}`)
-  .then(() => console.log('all is ok'))
-  .catch(() => console.log('error'));
+  .then(() => console.log('all is ok', token))
+  .catch(() => console.log('error', token));
 // for bot working in chats
 bot.telegram.getMe().then(botInfo => {
   bot.options.username = botInfo.username;
