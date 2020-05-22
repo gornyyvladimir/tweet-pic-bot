@@ -8,7 +8,7 @@ const messageHandler = require('./handlers/message');
 // env variables
 const token = process.env.BOT_TOKEN;
 const port = process.env.PORT || 3000;
-const url = process.env.URL || 'https://i-hate-voice-bot.herokuapp.com';
+const url = process.env.URL || 'https://tweet-pic-bot.herokuapp.com/';
 
 // app init
 const expressApp = express();
