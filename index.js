@@ -8,7 +8,7 @@ const messageHandler = require('./handlers/message');
 // env variables
 const token = process.env.BOT_TOKEN;
 const port = process.env.PORT || 3000;
-const url = process.env.URL || 'https://tweet-pic-bot.herokuapp.com/';
+const url = process.env.URL || 'https://tweet-pic-bot.herokuapp.com';
 
 // app init
 const expressApp = express();
@@ -16,10 +16,7 @@ const expressApp = express();
 // setting up a bot to work with express
 const bot = new Telegraf(token);
 expressApp.use(bot.webhookCallback(`/bot${token}`));
-bot.telegram
-  .setWebhook(`${url}/bot${token}`)
-  .then(() => console.log('all is ok', token))
-  .catch(() => console.log('error', token));
+bot.telegram.setWebhook(`${url}/bot${token}`);
 // for bot working in chats
 bot.telegram.getMe().then(botInfo => {
   bot.options.username = botInfo.username;
