@@ -3,7 +3,6 @@ const express = require('express');
 const { Telegraf } = require('telegraf');
 const startCommand = require('./commands/start');
 const linkHandler = require('./handlers/link');
-const messageHandler = require('./handlers/message');
 
 // env variables
 const token = process.env.BOT_TOKEN;
@@ -25,7 +24,6 @@ bot.telegram.getMe().then(botInfo => {
 // handle bot commands
 startCommand(bot);
 linkHandler(bot);
-messageHandler(bot);
 
 // express server for web
 expressApp.get('/', (req, res) => {

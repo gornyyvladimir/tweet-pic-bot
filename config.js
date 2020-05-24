@@ -5,11 +5,9 @@ This bot takes screenshot of tweet that you provided by link
 `;
 const waitMessage = 'Please wait, it will takes 5-10 seconds. ⏳';
 const errorMessage = 'Something went wrong, check your link or try later. 🚫';
-const notFoundMessage = `I can't understand you. You should send me a *twitter link*. 🔗`;
 
 module.exports = {
   helpMessage,
   waitMessage,
   errorMessage,
-  notFoundMessage,
 };
