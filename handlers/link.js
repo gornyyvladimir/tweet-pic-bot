@@ -25,7 +25,9 @@ module.exports = bot => {
       await fs.unlink(filePath);
     } catch (err) {
       // eslint-disable-next-line no-console
+      const adminChatId = process.env.ADMIN_ID;
       console.log(`Ooops, encountered an error for ${ctx.updateType}`, err);
+      ctx.telegram.sendMessage(adminChatId, `${err.name} ${err.message}`);
       ctx.reply(config.errorMessage);
     }
   });
