@@ -25,12 +25,13 @@ module.exports = bot => {
       await ctx.replyWithPhoto({ source: filePath });
       await fs.unlink(filePath);
     } catch (err) {
-      // eslint-disable-next-line no-console
       const adminChatId = process.env.ADMIN_ID;
-      const errorMessage = `${err.name} ${err.message}
-      error on: ${url}
-      time: ${new Date()}`;
-      console.log(`Ooops, encountered an error for ${ctx.updateType}`, err);
+      const errorMessage = `
+      Error: ${err.name} ${err.message}
+      link: ${url}
+      type: ${ctx.updateType}`;
+      // eslint-disable-next-line no-console
+      console.log(errorMessage, err);
       ctx.telegram.sendMessage(adminChatId, errorMessage);
       ctx.reply(config.errorMessage);
     }
