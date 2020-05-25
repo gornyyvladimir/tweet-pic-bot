@@ -4,6 +4,7 @@ const querystring = require('querystring');
 const fs = require('fs').promises;
 const getScreenShot = require('../utils/getScreenShot');
 const config = require('../config');
+const sendError = require('../utils/sendError');
 
 module.exports = bot => {
   bot.hears(/https?:\/\/(www\.)?twitter\.com.*/, async ctx => {
@@ -25,15 +26,7 @@ module.exports = bot => {
       await ctx.replyWithPhoto({ source: filePath });
       await fs.unlink(filePath);
     } catch (err) {
-      const adminChatId = process.env.ADMIN_ID;
-      const errorMessage = `
-      Error: ${err.name} ${err.message}
-      link: ${url}
-      type: ${ctx.updateType}`;
-      // eslint-disable-next-line no-console
-      console.log(errorMessage, err);
-      ctx.telegram.sendMessage(adminChatId, errorMessage);
-      ctx.reply(config.errorMessage);
+      sendError(err, ctx);
     }
   });
 };
