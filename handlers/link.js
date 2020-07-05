@@ -1,4 +1,3 @@
-// require('dotenv').config();
 const uniqueId = require('lodash/uniqueId');
 const querystring = require('querystring');
 const fs = require('fs').promises;
@@ -18,11 +17,12 @@ module.exports = bot => {
     const url = `https://publish.twitter.com/?${query}`;
 
     const filePath = `${uniqueId(`${ctx.from.username}-`)}-shot.png`;
+    const selector = '#twitter-widget-0';
 
     try {
       await ctx.reply(config.waitMessage);
       await ctx.replyWithChatAction('upload_photo');
-      await getScreenShot(url, filePath);
+      await getScreenShot(url, filePath, selector);
       await ctx.replyWithPhoto({ source: filePath });
       await fs.unlink(filePath);
     } catch (err) {
