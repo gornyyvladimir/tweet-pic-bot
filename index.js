@@ -11,6 +11,10 @@ const url = process.env.URL || 'https://tweet-pic-bot.herokuapp.com';
 
 // setting up a bot to work with express
 const bot = new Telegraf(token);
+// for bot working in chats
+bot.telegram.getMe().then(botInfo => {
+  bot.options.username = botInfo.username;
+});
 // handle bot commands
 startCommand(bot);
 linkHandler(bot);
